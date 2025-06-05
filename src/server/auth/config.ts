@@ -49,10 +49,6 @@ export const authConfig = {
      */
   ],
   callbacks: {
-    signIn: async ({ user, account, profile, email, credentials }) => {
-      console.log("signIn", user, account, profile, email, credentials);
-      return true;
-    },
     session: ({ session, user, token }) => {
       console.log("session", session);
       console.log("token", token);
