@@ -6,8 +6,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function HomePage() {
   const { data: session, status } = useSession();
 
-  const handleSignIn = () => {
-    signIn('github');
+  const handleSignIn = (type: string) => {
+    signIn(type || 'github');
   };
 
   const handleSignOut = () => {
@@ -46,12 +46,21 @@ export default function HomePage() {
             </button>
           </div>
         ) : (
-          <button 
-            onClick={handleSignIn}
-            className="px-4 py-2 bg-[#238636] rounded hover:bg-[#2ea043] transition-colors"
-          >
-            Sign in with GitHub
-          </button>
+          <>
+            <button 
+              onClick={() => handleSignIn('github')}
+              className="px-4 py-2 bg-[#238636] rounded hover:bg-[#2ea043] transition-colors"
+            >
+              Sign in with GitHub
+            </button>
+
+            <button 
+              onClick={() => handleSignIn('google')}
+              className="px-4 py-2 bg-[#238636] rounded hover:bg-[#2ea043] transition-colors"
+            >
+              Sign in with Google
+            </button>
+          </>
         )}
       </div>
     </main>

@@ -2,6 +2,7 @@ import { env } from "@/env";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
 // import DiscordProvider from "next-auth/providers/discord";
 import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 
 /**
@@ -37,6 +38,10 @@ export const authConfig = {
     GitHub({
       clientId: env.AUTH_GITHUB_ID as string,
       clientSecret: env.AUTH_GITHUB_SECRET as string
+    }),
+    Google({
+      clientId: env.AUTH_GOOGLE_ID as string,
+      clientSecret: env.AUTH_GOOGLE_SECRET as string
     })
     /**
      * ...add more providers here.
