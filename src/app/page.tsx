@@ -1,10 +1,16 @@
 
 'use client';
 
+import { BASE_URL } from "@/constants";
+import { fetcher } from "@/utils";
 import { useSession, signIn, signOut } from "next-auth/react";
+import useSWR from "swr";
+
 
 export default function HomePage() {
   const { data: session, status } = useSession();
+
+  const { data, error, isLoading } = useSWR(`${BASE_URL}`, fetcher);
 
   const handleSignIn = (type: string) => {
     signIn(type || 'github');
@@ -20,6 +26,8 @@ export default function HomePage() {
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
           Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
         </h1>
+
+        <h2>用户数据：{ JSON.stringify(data)}</h2>
         
         {status === "loading" ? (
           <div>Loading...</div>
